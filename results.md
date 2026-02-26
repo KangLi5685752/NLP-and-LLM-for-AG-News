@@ -1,19 +1,54 @@
-===== Baseline Results =====
-Accuracy: 0.9218
-Macro-F1: 0.9217
-Training + inference time: 19.85 seconds
+## Task
+AG News text classification (4 categories)
 
-Classification Report:
-              precision    recall  f1-score   support
+Train subset: 20,000 samples  
+Evaluation subset: 5,000 samples  
 
-           0       0.93      0.91      0.92      1900
-           1       0.96      0.98      0.97      1900
-           2       0.90      0.89      0.89      1900
-           3       0.90      0.90      0.90      1900
+---
 
-    accuracy                           0.92      7600
-   macro avg       0.92      0.92      0.92      7600
-weighted avg       0.92      0.92      0.92      7600
+## Baseline: TF-IDF + Logistic Regression
+
+Accuracy: **0.9218**  
+Macro-F1: **0.9217**  
+Training + inference time: **19.85 seconds**
+
+---
+
+## Transformer: DistilBERT (Fine-tuning, 1 epoch)
+
+### CPU
+Accuracy: **0.9178**  
+Macro-F1: **0.9171**  
+Training + evaluation time: **1612.85 seconds (~26.9 minutes)**
+
+### GPU (NVIDIA RTX 4060)
+Accuracy: **0.9174**  
+Macro-F1: **0.9167**  
+Training + evaluation time: **121.14 seconds (~2.0 minutes)**
+
+---
+
+## Comparison & Analysis
+
+| Model | Macro-F1 | Time |
+|------|---------|------|
+| TF-IDF + Logistic | **0.9217** | 19.85 s |
+| DistilBERT (GPU) | 0.9167 | 121 s |
+| DistilBERT (CPU) | 0.9171 | 1613 s |
+
+**Key observations**
+
+- The traditional TF-IDF + Logistic Regression baseline slightly outperformed DistilBERT on this structured news classification task.
+- DistilBERT required significantly higher computational cost.
+- GPU acceleration reduced training time by **~13×** (26.9 min → 2.0 min).
+- For keyword-driven classification problems, linear models with engineered features remain highly competitive.
+- Transformer models provide stronger semantic representation but should be selected based on performance–efficiency trade-offs.
+
+---
+
+## Conclusion
+
+This experiment demonstrates the importance of comparing traditional and deep learning approaches and evaluating both performance and computational efficiency when selecting models for production scenarios.
 
 ## Model Interpretability
 
