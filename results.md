@@ -15,3 +15,13 @@ Classification Report:
    macro avg       0.92      0.92      0.92      7600
 weighted avg       0.92      0.92      0.92      7600
 
+## Model Interpretability
+
+Top important words learned by the Logistic Regression model:
+
+World: iran, palestinian, afp afp, athens greece, president, nuclear, canadian press, iraqi, afp, iraq 
+Sports: players, olympic, baseball, stadium, season, sports, league, team, cup, coach 
+Business: business, airlines, corp, tax, company, economic, bank, hellip, economy, oil 
+Sci/Tech: reuters reuters, apple, technology, web, microsoft, scientists, software, space, nasa, internet 
+
+The results show that the model captures meaningful domain-specific vocabulary for each category.
